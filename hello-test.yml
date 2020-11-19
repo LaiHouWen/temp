@@ -1,2 +1,16 @@
 server:
   port: 9003
+  
+# actuator
+#http://localhost:9003/actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 打印log日志
+logging:
+  level:
+    root: warn
+    org.springframework.cloud: debug

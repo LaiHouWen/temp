@@ -1,6 +1,20 @@
 server:
   port: 9001
  
+# actuator
+#http://localhost:9001/actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+# 打印log日志
+logging:
+  level:
+    root: warn
+    org.springframework.cloud: debug 
+
 #自定义属性
 name: '{cipher}85618eb7273fce6edee8b017b58f7247281fffe35f48f8eceb100d2c0323a51d'
 age: 20
