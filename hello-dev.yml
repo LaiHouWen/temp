@@ -1,2 +1,7 @@
 server:
   port: 9001
+ 
+#自定义属性
+name: '{cipher}85618eb7273fce6edee8b017b58f7247281fffe35f48f8eceb100d2c0323a51d'
+age: 20
+password: 123456
