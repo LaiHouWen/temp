@@ -5,11 +5,16 @@ server:
 spring:
   application:
     name: config-client
+  cloud:
+    config:
+      discovery:
+        enabled: true
     # BusProperties
     bus:
       destination: bus-q
       trace:
         enabled: true
+      id: ${spring.application.name}:${spring.profiles.active}:${random.uuid}
     stream:
       binders:
         rabbit1:
@@ -34,7 +39,7 @@ spring:
           binder: rabbit1
         springCloudBusOutput:
           binder: rabbit1
-  
+ 
 # actuator
 #http://localhost:9003/actuator
 management:
@@ -42,6 +47,16 @@ management:
     web:
       exposure:
         include: "*"
+
+## eureka
+##如果用服务id去进行访问，
+##那么请求地址用http:网关地址/serviceId/具体的url
+eureka:
+  client:
+    enabled: true
+    service-url: # http://localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
 
 # 打印log日志
 logging:
