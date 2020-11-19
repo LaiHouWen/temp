@@ -1,5 +1,39 @@
 server:
   port: 9001
+  
+#
+spring:
+  application:
+    name: config-client
+    # BusProperties
+    bus:
+      destination: bus-q
+      trace:
+        enabled: true
+    stream:
+      binders:
+        rabbit1:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: localhost
+                port: 5672
+                username: guest
+                password: guest
+                publisher-confirms: true
+      bindings:
+        myInput:
+          binder: rabbit1
+          destination: things1
+        myOutput:
+          binder: rabbit1
+          destination: things1
+        # 添加 bus 绑定 通道配置
+        springCloudBusInput:
+          binder: rabbit1
+        springCloudBusOutput:
+          binder: rabbit1
  
 # actuator
 #http://localhost:9001/actuator
